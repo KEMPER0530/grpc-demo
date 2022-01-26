@@ -1,11 +1,20 @@
+// バージョン定義
 syntax = "proto3";
-option go_package="./";
+// パッケージ定義
 package chat;
+option go_package = "./";
 
-message Message {
+// リクエストで送る値。「１、２」はそのデータの番号。
+message MessageReq {
   string body = 1;
 }
 
+// レスポンスで送る値。
+message MessageRes {
+  string answer = 1;
+}
+
+// サービスとRPCメソッド定義
 service ChatService {
-  rpc SayHello(Message) returns (Message) {}
+  rpc SayHello(MessageReq) returns (MessageRes) {}
 }
